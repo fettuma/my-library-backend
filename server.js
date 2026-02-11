@@ -24,7 +24,12 @@ const __dirname = path.dirname(__filename);
 
 // ───────── Auth config ─────────
 const USERS_FILE = path.join(__dirname, "users.json");
-const JWT_SECRET = process.env.JWT_SECRET || "mysecretkey";
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  console.error("JWT_SECRET is missing in environment variables");
+  process.exit(1);
+}
 
 // Helpers
 const readUsers = async () => {
