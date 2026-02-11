@@ -146,8 +146,8 @@ app.post("/create-checkout-session", async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      success_url: "https://my-library-react.vercel.app/success",
+      cancel_url: "https://my-library-react.vercel.app/cancel",
     });
 
     res.json({ url: session.url });
@@ -158,4 +158,8 @@ app.post("/create-checkout-session", async (req, res) => {
 });
 
 // ───────── START SERVER ─────────
-app.listen(4242, () => console.log("Backend running on port 4242"));
+const PORT = process.env.PORT || 4242;
+
+app.listen(PORT, () =>
+  console.log(`Backend running on port ${PORT}`)
+);
